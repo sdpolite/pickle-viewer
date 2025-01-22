@@ -4,6 +4,8 @@ import * as fs from 'fs';
 import * as path from 'path';
 
 const isDebugMode = vscode.workspace.getConfiguration('pickleViewer').get('debug', false);
+// プラットフォームに応じて Python 実行コマンドを切り替える
+const pythonCommand = process.platform === 'win32' ? 'python' : 'python3';
 
 // ログファイルパス
 const logFilePath = path.join(__dirname, 'debug.log');
@@ -53,7 +55,7 @@ export function activate(context: vscode.ExtensionContext) {
         const filePath = uri.fsPath;
 
         logMessage('Fetching total rows...');
-        exec(`python3 ${context.extensionPath}/scripts/check_dependencies.py`, (error, stdout, stderr) => {
+        exec(`${pythonCommand} ${context.extensionPath}/scripts/check_dependencies.py`, (error, stdout, stderr) => {
             if (error || stderr.includes("Missing packages")) {
                 vscode.window.showErrorMessage(
                     `必要なPythonパッケージが不足しています。\n` +
@@ -64,7 +66,7 @@ export function activate(context: vscode.ExtensionContext) {
                 return;
             }
             logMessage("Python環境の依存関係が確認されました。");
-            exec(`python3 ${scriptPath} "${filePath}" 0 -1`, (error, stdout, stderr) => {
+            exec(`${pythonCommand} ${scriptPath} "${filePath}" 0 -1`, (error, stdout, stderr) => {
                 if (error) {
                     logError(`Failed to get total rows: ${error.message}`);
                     vscode.window.showErrorMessage(`Failed to get total rows: ${stderr || error.message}`);
@@ -83,7 +85,7 @@ export function activate(context: vscode.ExtensionContext) {
                 logMessage(`Total rows fetched: ${totalRows}`);
 
                 logMessage('Fetching initial data...');
-                exec(`python3 ${scriptPath} "${filePath}" 0 50`, (error, stdout, stderr) => {
+                exec(`${pythonCommand} ${scriptPath} "${filePath}" 0 50`, (error, stdout, stderr) => {
                     if (stderr) {
                         logError(`Python STDERR (Initial Data): ${stderr}`);
                     }
@@ -123,7 +125,7 @@ function initializeWebview(
             const end: number = message.end;
 
             logMessage(`Fetching data for range ${start}-${end}`);
-            exec(`python3 ${scriptPath} "${filePath}" ${start} ${end}`, (error, stdout, stderr) => {
+            exec(`${pythonCommand} ${scriptPath} "${filePath}" ${start} ${end}`, (error, stdout, stderr) => {
                 if (stderr) {
                     logError(`Python STDERR (Paging Data): ${stderr}`);
                 }

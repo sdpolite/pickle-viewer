@@ -28,7 +28,7 @@
 
 ## スクリーンショット
 
-![Pickle Viewer スクリーンショット](images/sample1.png)
+![Pickle Viewer スクリーンショット](https://github.com/sdpolite/pickle-viewer/blob/master/images/sample1.png)
 
 ---
 
@@ -65,8 +65,10 @@ pip install pandas joblib
 
 ## リリース・ノート
 
-### 0.0.1
-
+### 0.1.0
 初期リリース
+
+### 0.0.1
+仮リリース
 
 ---

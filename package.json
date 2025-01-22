@@ -2,7 +2,7 @@
   "name": "pickle-viewer",
   "displayName": "pickle-viewer",
   "description": "",
-  "version": "0.0.1",
+  "version": "0.1.0",
   "publisher": "SDPolite",
   "engines": {
     "vscode": "^1.96.0"
@@ -64,5 +64,9 @@
     "webpack-cli": "^5.1.4",
     "@vscode/test-cli": "^0.0.10",
     "@vscode/test-electron": "^2.4.1"
+  },
+  "repository": {
+  "type": "git",
+  "url": "https://github.com/sdpolite/pickle-viewer.git"
   }
 }
