@@ -1,0 +1,21 @@
+# Node.js の依存パッケージ
+node_modules/
+
+# ビルド成果物
+dist/
+out/
+
+# ログファイル
+logs/
+*.log
+
+# VS Code の設定フォルダ（プロジェクト設定以外）
+.vscode/
+*.vsix
+
+# pickleファイル
+*.pkl
+*.pickle
+
+# バックアップ
+*.bk
