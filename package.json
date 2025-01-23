@@ -2,8 +2,9 @@
   "name": "pickle-viewer",
   "displayName": "pickle-viewer",
   "description": "",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "publisher": "SDPolite",
+  "icon": "icons/pickle-viewer.ico",
   "engines": {
     "vscode": "^1.96.0"
   },
